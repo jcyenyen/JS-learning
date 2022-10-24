@@ -33,7 +33,7 @@
                 age: 3
             }
         ];
-
+        //filter
         var filterEmpty = people.filter(function (item, index, array) {
         });
         console.log(filterEmpty);    // 沒有條件，會是一個空陣列
@@ -49,7 +49,7 @@
         console.log(filterDouble);   // Wang, 滷蛋 這兩個物件
 
 
-
+        //foreach
         var forEachIt = people.forEach(function (item, index, array) {
             console.log(item, index); // 物件, 索引, 全部陣列
             return item;                     // forEach 沒在 return 的，所以這邊寫了也沒用
@@ -63,6 +63,7 @@
         console.log(people);               // 全部 age + 1
 
         
+        //map
         var mapEmpty = people.map(function (item, index, array) {
         });
         console.log(mapEmpty);    // [undefined, undefined, undefined, undefined]
