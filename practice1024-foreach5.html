@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let data = [{ "Kind": "公共充電站", "Charge": "投幣式", "Location": "泛亞車業", "Address": "高雄市鼓山區華榮路585號" },
+        { "Kind": "公共充電站", "Charge": "投幣式", "Location": "湖山春曉社區", "Address": "高雄市鳳山區八德路二段147號" },
+        { "Kind": "公共充電站", "Charge": "投幣式", "Location": "新大機車行", "Address": "高雄市三民區鼎中路52號" },
+        { "Kind": "公共充電站", "Charge": "免費", "Location": "高雄第一科技大學", "Address": "高雄市楠梓區卓越路2號" },
+        { "Kind": "公共充電站", "Charge": "投幣式", "Location": "皇苑逸品苑", "Address": "高雄市鼓山區美術北三路100號" }];
+
+        let total ={
+            free:[],
+            paid:[]
+        };
+
+        data.forEach(function(v,i){
+            if(v.Charge==="免費"){
+                total.free.push(v.Charge)
+            }else if(v.Charge==="投幣式"){
+                total.paid.push(v.Charge)
+            }
+        });
+
+        console.log(`高雄市免費的充電站有${total.free.length}處`);
+        console.log(`高雄市投幣式的充電站有${total.paid.length}處`);
+
+    </script>
+</body>
+
+</html>
