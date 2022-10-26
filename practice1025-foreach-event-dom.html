@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .btn {
+            margin: 10px 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>新增資料</h2>
+    <div>
+        <input type="text" class="coffeeName" placeholder="咖啡店名稱">
+        <!-- <input type="text" class="coffeeWifi" placeholder="有無免費網路"> -->
+        <select class="coffeeWifi">
+            <option value="有免費網路">有免費網路</option>
+            <option value="沒有免費網路">沒有免費網路</option>
+        </select>
+    </div>
+    <input type="button" class="btn" value="儲存">
+    <h2>顯示資料</h2>
+    <div class="filter">
+        <input type="button" value="全部">
+        <input type="button" value="有免費網路">
+        <input type="button" value="沒有免費網路">
+    </div>
+    <ul class="list">
+        <li>haha</li>
+    </ul>
+    <script>
+        let data = [
+            { wifi: '有免費網路', name: '星巴克' },
+            { wifi: '沒有免費網路', name: '摩斯' },
+            { wifi: '有免費網路', name: '怡客' },
+            { wifi: '沒有免費網路', name: '露易莎' },
+            { wifi: '有免費網路', name: '伯朗' },
+        ];
+        const list = document.querySelector('.list');
+        //初始化網頁
+        function init() {
+            let str = ''
+            data.forEach(function (v, i) {
+                //XX咖啡,wifiXX
+                let content = `<li>${v.name}咖啡,wifi ${v.wifi}</li>`
+                str += content
+            })
+
+            list.innerHTML = str;
+        }
+
+        init();
+
+        //篩選器
+
+        const net = document.querySelector('.filter');
+        net.addEventListener('click', function (e) {
+
+            if (e.target.value === undefined) {
+                console.log('沒點到按鈕歐!');
+            } else {
+                str = '';
+                data.forEach(function (v, i) {
+                    if (e.target.value === v.wifi) {
+                        str += `<li>${v.name}咖啡,wifi ${v.wifi}</li>`
+                    } else if (e.target.value === '全部') {
+                        str += `<li>${v.name}咖啡,wifi ${v.wifi}</li>`
+                    }
+                });
+                list.innerHTML = str;
+            }
+        })
+
+        //新增
+        const coffeeName = document.querySelector('.coffeeName');
+        const coffeeWifi = document.querySelector('.coffeeWifi');
+        const btn = document.querySelector('.btn');
+
+        btn.addEventListener('click', function (e) {
+            //老師作法
+            // let obj = {};
+            // obj.wifi=coffeeWifi.value
+            // obj.name=coffeeName.value
+            // data.push(obj);
+            data.push({ wifi: coffeeWifi.value, name: coffeeName.value });
+            console.log(data);
+            coffeeName.value = '';
+            coffeeWifi.value = '有免費網路';
+            init()
+            
+        });
+
+
+
+    </script>
+</body>
+
+</html>
