@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form>
+        帳號:
+        <input type="text" class="acc">
+        <br>
+        密碼:
+        <input type="text" class="pass">
+        <br>
+        <br>
+        <input type="button" value="送出" class="send">
+    </form>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <script>
+        const acc = document.querySelector('.acc');
+        const pass = document.querySelector('.pass');
+        const send = document.querySelector('.send');
+
+        send.addEventListener('click', function () {
+            callSighUp()
+        })
+
+        function callSighUp() {
+            if (acc.value === '' || pass.value === '') {
+                alert('請輸入正確的格式');
+                return;
+            }
+            let obj = {
+                email: acc.value,
+                password: pass.value
+            };
+
+            axios.post('https://hexschool-tutorial.herokuapp.com/api/signup', obj)
+                .then(function (response) {
+                    console.log(response)
+                    if (response.data.message === '帳號註冊成功') {
+                        alert('恭喜,可以進行下一步')
+                    } else if (response.data.message === '此帳號已被使用') {
+                        alert('已被註冊,換一個吧');
+                    } else {
+                        alert('???');
+                    }
+                    acc.value = '';
+                    pass.value = '';
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        }
+    </script>
+</body>
+
+</html>
