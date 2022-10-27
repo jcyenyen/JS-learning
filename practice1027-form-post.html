@@ -9,6 +9,7 @@
 </head>
 
 <body>
+    <h2>註冊</h2>
     <form>
         帳號:
         <input type="text" class="acc">
@@ -19,8 +20,20 @@
         <br>
         <input type="button" value="送出" class="send">
     </form>
+    <h2>登入</h2>
+    <form>
+        帳號:
+        <input type="text" class="acc2">
+        <br>
+        密碼:
+        <input type="text" class="pass2">
+        <br>
+        <br>
+        <input type="button" value="送出" class="send2">
+    </form>
     <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
     <script>
+        //註冊
         const acc = document.querySelector('.acc');
         const pass = document.querySelector('.pass');
         const send = document.querySelector('.send');
@@ -46,11 +59,43 @@
                         alert('恭喜,可以進行下一步')
                     } else if (response.data.message === '此帳號已被使用') {
                         alert('已被註冊,換一個吧');
-                    } else {
-                        alert('???');
-                    }
+                    } 
                     acc.value = '';
                     pass.value = '';
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        }
+        //登入
+        const signIn = {
+            acc2: document.querySelector('.acc2'),
+            pass2: document.querySelector('.pass2'),
+            send2: document.querySelector('.send2')
+        }
+        signIn.send2.addEventListener('click', function () {
+            callSighIn()
+        })
+        function callSighIn() {
+            if (signIn.acc2.value === '' || signIn.pass2.value === '') {
+                alert('請輸入正確的格式');
+                return;
+            }
+            let obj2 = {
+                email: signIn.acc2.value,
+                password: signIn.pass2.value
+            };
+
+            axios.post('https://hexschool-tutorial.herokuapp.com/api/signin', obj2)
+                .then(function (response) {
+                    console.log(response)
+                    if (response.data.message === '登入成功') {
+                        alert('恭喜,開始玩吧')
+                    } else if (response.data.message === '此帳號不存在或帳號密碼錯誤') {
+                        alert('還沒註冊喔!');
+                    } 
+                    signIn.acc2.value = '';
+                    signIn.pass2.value = '';
                 })
                 .catch(function (error) {
                     console.log(error);
