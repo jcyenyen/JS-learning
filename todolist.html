@@ -15,7 +15,7 @@
         <input type="button" value="新增" class="create">
     </div>
     <ul class="list">
-        <li>12345 <input type="button" value="刪除" class="delete"></li>
+        
     </ul>
     <script>
         const text = document.querySelector('.text');
@@ -29,21 +29,31 @@
             let str = ""
             data.forEach(function (v, i) {
                 str += `<li>${v.content} <input type="button" value="刪除" class="delete" data-num="${i}"></li>`
-                list.innerHTML = str;
             })
+            list.innerHTML = str;  //放foreach最後一筆刪不掉;放外面有無都會寫入
         }
         //新增
-        create.addEventListener('click',function(e){
-            if(text.value===''){
+        create.addEventListener('click', function (e) {
+            if (text.value === '') {
                 alert('要打字喔');
                 return
             }
-            let obj={}
-            obj.content=text.value
+            let obj = {}
+            obj.content = text.value
             data.push(obj);
             renderData();
         })
         //刪除
+        list.addEventListener('click', function (e) {
+            if (e.target.nodeName !== 'INPUT') {
+                alert('沒點對喔')
+                return
+            }
+            let num = e.target.getAttribute('data-num');
+            data.splice(num, 1);
+            console.log(data);
+            renderData();
+        })
         
     </script>
 </body>
