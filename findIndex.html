@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let data =[
+            {name:'hua',id:'123'},
+            {name:'huahua',id:'12345'},
+            {name:'huahaha',id:'12345'},
+        ]
+
+        let cus=data.findIndex(function(v){
+            console.log(v)                  //只找一筆
+            return v.id==='12345'           //用值去找index &別的key-value
+        });
+
+        console.log(cus);   //1
+        console.log(data[cus].name); //huahua
+    </script>
+</body>
+</html>
