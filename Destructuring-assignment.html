@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //解構矩陣
+        let family = ['小明', '杰倫', '阿姨', '老媽', '老爸'];
+        let [ming, jay, auntie, mom, papa] = family;
+
+        console.log(ming);
+
+        //解構字串
+        let str = '基紐特攻隊';
+        [a, b, c, d, e] = str;
+
+        console.log(a);
+
+        //object
+        let familys = {
+            mings: '小明',
+            jays: '杰倫',
+        };
+
+        console.log(familys.mings);
+        let { mings, jays } = familys
+        console.log(mings);
+
+        //被賦值的object如果key已有value value會是變數
+        let GinyuTeam = {
+            Ginyu: '基紐',
+            Jeice: '吉斯',
+            burter: '巴特',
+        }
+        let { Ginyu: Goku } = GinyuTeam;
+
+        console.log(Goku); //機紐
+
+        let group = { a: 'go', b: [, 2,] }
+        let { a: gogo, b: [, num] } = group
+
+        console.log(gogo); //go
+        console.log(num);  //2
+
+        //預設值
+        let [mingq = '小明', jayq = '杰倫'] = ['阿明']
+        // 第一個會被賦值，第二個會用預設
+        // mingq: "阿明"
+        // jayq: "杰倫"
+        let { family: minga = '小明' } = { family: '曉華' }
+        console.log(minga); //曉華
+
+
+        //解構也能使用在函式的參數，使用方式如同將傳入的物件對應到函式參數上。這樣參數一樣能夠能夠自訂變數名稱、順序、預設值等。
+        function callSomeone({ person = '小明', person2 }) {
+            console.log(`${person} 呼叫 ${person2}`)
+        }
+        callSomeone({ person : '小c'})
+        callSomeone({})
+        callSomeone('jay','her')
+        
+    </script>
+</body>
+
+</html>
