@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //陣列
+        let arr2 = [1, 2, 3, 4, 5];
+        let newArr = arr2.reduce((acc, cur) => {
+            console.log(acc);
+            console.log(cur);
+            return acc + cur
+        }, 0);
+
+        console.log(newArr);
+        //合併陣列裡的陣列
+        let arr1 = [['a', 'b'], ['c', 'd'], ['e', 'f'], ['g', 'h']];
+        let newArr1 = arr1.reduce((acc, cur) => {
+            console.log(acc);
+            console.log(cur);
+            return acc.concat(cur);
+        }, [])
+
+        console.log(newArr1);
+
+        //計算相同字串數量以矩陣呈現
+        const arr = ['a', 'a', 'b', 'c', 'c', 'c', 'e'];
+        const reduceArr = arr.reduce((accumulator, currentValue) => {
+            console.log(accumulator[currentValue]);  //第一筆undefined 因為空陣列
+            if (accumulator[currentValue]) {         //false 
+                accumulator[currentValue]++;
+            } else {
+                accumulator[currentValue] = 1;       //accumulator['a']=1
+            }                                        //用if-else計數
+            console.log(accumulator);
+            console.log(currentValue);
+            return accumulator;
+            
+        }, {});
+        console.log(reduceArr); // { a: 2, b: 1, c: 3, e: 1 }
+        
+</body>
+
+</html>
